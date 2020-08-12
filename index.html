@@ -5,16 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supreme Tool</title>
-    <!-- <link rel="stylesheet" href="convertTool.css" /> -->
+    <link rel="stylesheet" href="convertTool.css" />
 </head>
 
 <body>
     <div class="container">
         <p>Convert CSS 2 React Style</p>
-        <section>
+        <section class="example">
+            <pre class="example_input">
+display: flex;
+padding: 10px 0;
+position: sticky;
+justify-content: space-around;
+background-color: #131722;</pre>
+            <pre class="example_result">
+display: "flex",
+padding: "10px 0",
+position: "sticky",
+justifyContent: "space-around",
+backgroundColor: "#131722"</pre>
+        </section>
+        <section class="practice">
             <textarea id="input"></textarea>
-            <button onclick="convert()">Convert</button>
-            <div id="result"></div>
+            <div class="action">
+                <button id="convert_btn" onclick="convert()">Convert</button>
+                <button id="copy_btn" onclick="copy()">Copy Result</button>
+            </div>
+            <pre id="result"></pre>
         </section>
     </div>
     <script>
@@ -23,13 +40,13 @@
 
             let r = '';
             let l = value.split('\n').map(e => e.trim());
-            l.forEach((e,i) => {
+            l.forEach((e, i) => {
 
                 let k = e.split(':')[0];
                 let v = e.split(':')[1].trim().replace(';', '');
 
                 k = k.split('-').map((e, i) => {
-                    if(i > 0){
+                    if (i > 0) {
                         return e.charAt(0).toUpperCase() + e.slice(1);
                     } else {
                         return e;
@@ -37,13 +54,36 @@
                 }).join('');
 
                 r += k + ': "' + v + '"';
-                if(i < l.length - 1){
+                if (i < l.length - 1) {
                     r += ',\n';
                 }
             });
 
             document.getElementById('result').innerText = r;
         }
+
+        function copy() {
+            var elm = document.getElementById("result");
+            // for Internet Explorer
+
+            if (document.body.createTextRange) {
+                var range = document.body.createTextRange();
+                range.moveToElementText(elm);
+                range.select();
+                document.execCommand("Copy");
+            } else if (window.getSelection) {
+                // other browsers
+
+                var selection = window.getSelection();
+                var range = document.createRange();
+                range.selectNodeContents(elm);
+                selection.removeAllRanges();
+                selection.addRange(range);
+                document.execCommand("Copy");
+            }
+            document.getElementById('copy_btn').innerHTML = 'Copied'
+        }
     </script>
 </body>
+
 </html>
