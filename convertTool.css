@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+section {
+    flex-grow: 1;
+    display: flex;
+}
+#input {
+    width: 40%;
+    height: 200px;
+    border: 1px solid black;
+}
+#result {
+    width: 40%;
+    height: 200px;
+    border: 1px solid black;
+}
