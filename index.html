@@ -5,25 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supreme Tool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/default.min.css">
     <link rel="stylesheet" href="convertTool.css" />
 </head>
 
 <body>
     <div class="container">
         <p>Convert CSS 2 React Style</p>
+        <pre></pre>
         <section class="example">
             <pre class="example_input">
+                <code class="css">
 display: flex;
 padding: 10px 0;
 position: sticky;
 justify-content: space-around;
-background-color: #131722;</pre>
-            <pre class="example_result">
+background-color: #131722;
+                </code>
+            </pre>
+            <pre class="css example_result">
+                <code class="css">
 display: "flex",
 padding: "10px 0",
 position: "sticky",
 justifyContent: "space-around",
-backgroundColor: "#131722"</pre>
+backgroundColor: "#131722"
+                </code>
+            </pre>
         </section>
         <section class="practice">
             <textarea id="input"></textarea>
@@ -31,12 +39,20 @@ backgroundColor: "#131722"</pre>
                 <button id="convert_btn" onclick="convert()">Convert</button>
                 <button id="copy_btn" onclick="copy()">Copy Result</button>
             </div>
-            <pre id="result"></pre>
+            <pre id="result">
+            </pre>
         </section>
     </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
     <script>
         function convert() {
-            let value = document.getElementById('input').value;
+            let value = document.getElementById('result_code').value;
 
             let r = '';
             let l = value.split('\n').map(e => e.trim());

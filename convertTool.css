@@ -19,7 +19,6 @@ p {
 }
 pre {
     white-space: pre-wrap;
-    background: hsl(30,80%,90%);
     font-size: 1.4rem;
 }
 .example {
@@ -27,11 +26,9 @@ pre {
     justify-content: space-around;
 }
 .example_input {
-    border: 1px solid black;
     padding: 20px;
 }
 .example_result {
-    border: 1px solid black;
     padding: 20px;
 }
 .practice {
